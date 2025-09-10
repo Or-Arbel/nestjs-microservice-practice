@@ -1,9 +1,12 @@
 import { Controller, Get } from '@nestjs/common';
+import { StatusService } from './status.service';
 
 @Controller('status')
 export class StatusController {
+  constructor(private readonly statusService: StatusService) {}
+
   @Get()
-  findStatus(): string {
-    return 'This action returns the status.';
+  getStatus() {
+    return this.statusService.checkServer();
   }
 }
