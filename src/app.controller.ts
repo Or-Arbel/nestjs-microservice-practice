@@ -1,17 +1,21 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
+import { AlertsService } from './modules/alerts/alerts.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly appService: AppService,
+    private readonly alertsService: AlertsService,
+  ) {}
 
   @Get()
   getHello(): string {
     return this.appService.getHello();
   }
 
-  @Post('/update')
-  updateAlert(): object {
-    return {message: 'post request from app controller'}; // should be changed and use func from alerts service
-  }
+    @Post('/update')
+    updateAlert(@Body() alertJson: object): object {
+      return this.alertsService.updateAlert(alertJson);
+    }
 }
