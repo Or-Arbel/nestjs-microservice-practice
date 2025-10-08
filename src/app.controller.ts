@@ -13,9 +13,4 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
-
-    @Post('/update')
-    updateAlert(@Body() alertJson: object): object {
-      return this.alertsService.updateAlert(alertJson);
-    }
 }

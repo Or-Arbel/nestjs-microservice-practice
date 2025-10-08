@@ -16,3 +16,6 @@ export const CreateAlertSchema = z.object({
 export const UpdateAlertSchema = CreateAlertSchema.extend({
   id: z.string(), // needed in order to  update a record
 });
+
+export type CreateAlertDto = z.infer<typeof CreateAlertSchema>;
+export type UpdateAlertDto = z.infer<typeof UpdateAlertSchema>;
